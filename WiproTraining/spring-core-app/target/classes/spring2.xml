@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+        <context:annotation-config/>     
+       <bean id="empBean1"  class="com.wipro.model.Employee">
+            <constructor-arg name="empno" value = "1001"/>
+            <constructor-arg name="ename" value = "Dhrubangshu"/>
+            <constructor-arg name="hiredate" value = "2024-03-23"/>
+            <constructor-arg name="job" value = "JavaDeveloper"/>
+            <constructor-arg name="sal" value = "40000.0"/>
+            <constructor-arg name="deptno" value = "10"/>
+            
+       </bean> 
+       
+       <bean id = "empBean2" class = "com.wipro.model.Employee">
+          <property name="empno" value = "1002"/>
+          <property name="ename" value = "Goswami"/>
+          <property name="customHiredate" value = "2024-03-23"/>
+          <property name="job" value = "UI Designer"/>
+          <property name="sal" value = "35000.0"/>
+          <property name="deptno" value = "20"/>
+          
+          
+       
+       </bean>
+       
+       <bean id = "addressBean1" class = "com.wipro.model.Address">
+       <constructor-arg name = "doorNumber" value ="3-4-256" />
+       <constructor-arg name = "street" value ="MG street" />
+       <constructor-arg name = "locality" value ="Abids" />
+       <constructor-arg name = "city" value ="ghy" />
+       <constructor-arg name = "pincode" value ="780102" />
+       
+       </bean>
+       
+    <!--    <bean id = "permanentAdress" class = "com.wipro.model.Address">
+       <property name = "doorNumber" value ="9-4-256" />
+       <property name = "street" value ="MG street" />
+       <property name = "locality" value ="Abids" />
+       <property name = "city" value ="ghy" />
+       <property name = "pincode" value ="780101" />
+       
+       </bean>
+        -->
+       <!--  Inject above address beans into person bean -->
+       <bean id = "personBean" class = "com.wipro.model.Person" autowire = "byType">
+       
+       <property name = "adharCard" value = "67687998"/>
+       <property name = "name" value = "Vinod"/>
+      <!--  <property name = "temporaryAddress" ref  = "addressBean1"/>
+       <property name = "permanentAdress" ref  = "addressBean2"/> -->
+       
+       </bean>
+
+</beans>
+
+
