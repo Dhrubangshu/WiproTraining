@@ -1,0 +1,23 @@
+
+user admin privilege 15 secret cisco123
+
+aaa new-model
+aaa authentication login default local
+aaa authorization exec default local
+
+show platform software yang-management process
+show platform software yang-management process monitor
+
+netconf-yang
+netconf-yang feature candidate-datastore
+
+show platform software yang-management process
+show platform software yang-management process monitor
+restconf
+
+
+-------
+on a new command prompt
+ssh admin@<ip> -p 830 -s netconf
+
+

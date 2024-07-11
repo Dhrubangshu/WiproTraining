@@ -1,0 +1,340 @@
+
+
+Get the Hostname:
+
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+      <source>
+          <running/>
+      </source>
+      <filter type="subtree">
+             <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+             <hostname/>
+             </native>
+      </filter>
+  </get-config>
+</rpc>
+
+
+
+
+
+Change the Hostname
+
+<?xml version="1.0" ?>
+     <rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+       <edit-config>
+         <target>
+           <running/>
+         </target>
+         <config>
+           <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+             <hostname>Router</hostname>
+          </native>
+         </config>
+       </edit-config>
+     </rpc>
+
+
+
+Change the Interface status:
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>GigabitEthernet2</name>
+          <enabled>false</enabled>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>
+
+
+
+
+Check the IP adress 
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <get>
+    <filter>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>GigabitEthernet2</name>
+          <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+            <address/>
+          </ipv4>
+        </interface>
+      </interfaces>
+    </filter>
+  </get>
+</rpc>
+
+
+
+
+Create the Loopback IP
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+        <interface>
+         <Loopback>
+          <name>4</name>
+          <ip>
+           <address>
+            <primary>
+             <address>14.1.1.1</address>
+             <mask>255.255.255.0</mask>
+            </primary>
+           </address>
+          </ip>
+         </Loopback>
+        </interface>
+      </native>
+    </config>
+  </edit-config>
+</rpc>
+
+
+
+Assign the IP address to Gi2 interface
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>GigabitEthernet2</name>
+          <enabled>true</enabled>
+          <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+            <address>
+              <ip>22.22.22.2</ip>
+              <netmask>255.255.255.0</netmask>
+            </address>
+          </ipv4>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>
+
+
+
+
+Delete the Loopback IP
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+        <interface operation='delete'>
+         <Loopback>
+          <name>4</name>
+          <ip>
+           <address operation='delete'>
+            <primary>
+             <address>14.1.1.1</address>
+             <mask>255.255.255.0</mask>
+            </primary>
+           </address>
+          </ip>
+         </Loopback>
+        </interface>
+      </native>
+    </config>
+  </edit-config>
+</rpc>
+
+
+
+
+Delete the Loopback interface
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <running/>
+    </target>
+    <config>
+      <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+        <interface>
+         <Loopback operation='delete'>
+          <name>1</name>
+         </Loopback>
+        </interface>
+      </native>
+    </config>
+  </edit-config>
+</rpc>
+
+
+
+Lock candidate data store
+
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <lock>
+      <target>
+          <candidate/>
+      </target>
+  </lock>
+</rpc>
+
+
+
+
+Close Session
+
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <close-session/>
+</rpc>
+
+
+
+
+
+Get Complete config
+
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+      <source>
+          <running/>
+      </source>
+      <filter type="subtree">
+             <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+            </native>
+         </filter>
+  </get-config>
+</rpc>
+
+
+get aaa information
+
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <get-config>
+      <source>
+          <running/>
+      </source>
+      <filter type="subtree">
+             <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+             <aaa/>
+          </native>
+         </filter>
+  </get-config>
+</rpc>
+
+
+
+
+Candidate data store changes
+
+Get the configuration from candidate data store 
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <get>
+    <source>
+          <candidate/>
+    </source>
+    <filter>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>GigabitEthernet2</name>
+          <ipv4 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+            <address/>
+          </ipv4>
+        </interface>
+      </interfaces>
+    </filter>
+  </get>
+</rpc>
+
+
+
+
+Change the intterface status 
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <candidate/>
+    </target>
+    <config>
+      <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interface>
+          <name>GigabitEthernet2</name>
+          <enabled>false</enabled>
+        </interface>
+      </interfaces>
+    </config>
+  </edit-config>
+</rpc>
+
+
+
+Commit -- Copy from Candidate to Runnign data store
+
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <commit></commit>
+</rpc>
+
+
+Create the Loopback IP
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <edit-config>
+    <target>
+      <candidate/>
+    </target>
+    <config>
+      <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+        <interface>
+         <Loopback>
+          <name>1</name>
+          <ip>
+           <address>
+            <primary>
+             <address>10.1.1.1</address>
+             <mask>255.255.255.0</mask>
+            </primary>
+           </address>
+          </ip>
+         </Loopback>
+        </interface>
+      </native>
+    </config>
+  </edit-config>
+</rpc>
+
+
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <commit></commit>
+</rpc>
+
+
+Copy config from running to candidate
+
+<rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1">
+  <copy-config>
+      <target>
+         <candidate/>
+      </target>
+      <source>
+          <running/>
+      </source>
+  </copy-config>
+</rpc>
